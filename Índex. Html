@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milagros ❤️</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  background:black;
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+}
+
+/* ESTRELLAS */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
+
+/* TEXTO CENTRAL */
+.center{
+  position:absolute;
+  font-size:45px;
+  color:#ff4d6d;
+  text-shadow:0 0 20px #ff4d6d, 0 0 40px #ff1e4d;
+  z-index:10;
+}
+
+/* CORAZONES FLOTANDO */
+.heart{
+  position:absolute;
+  color:red;
+  animation: float linear infinite;
+}
+
+@keyframes float{
+  0%{transform: translateY(100vh);}
+  100%{transform: translateY(-10vh);}
+}
+
+/* CORAZONES GIRANDO */
+.orbit{
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  animation: rotate 10s linear infinite;
+}
+
+.orbit span{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:25px;
+}
+
+@keyframes rotate{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="center">Milagros ❤️</div>
+
+<div class="orbit">
+  <span>💖</span>
+</div>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Crear estrellas */
+for(let i=0;i<150;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.left=Math.random()*100+"vw";
+  star.style.top=Math.random()*100+"vh";
+  star.style.animationDuration=Math.random()*3+1+"s";
+  document.body.appendChild(star);
+}
+
+/* Crear corazones flotando */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+15+"px";
+  heart.style.animationDuration=Math.random()*3+3+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
